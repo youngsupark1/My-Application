@@ -4,6 +4,7 @@ import MonthNavigation from "../components/MonthNavigation";
 import ExpenseList from "../components/ExpenseList";
 import CreateExpense from "../components/CreateExpense";
 import { useSelector } from "react-redux";
+import DashBoard from "../components/DashBoard";
 
 const Container = styled.main`
   max-width: 800px;
@@ -32,6 +33,7 @@ export default function Home() {
     <Container>
       <MonthNavigation month={month} setMonth={setMonth} />
       <CreateExpense month={month} />
+      <DashBoard month={month} filteredExpenses={filteredExpenses} />
       <ExpenseList expenses={filteredExpenses} />
     </Container>
   );

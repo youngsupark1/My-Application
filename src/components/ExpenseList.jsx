@@ -2,6 +2,15 @@ import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+const NoExpenseMessage = styled.div`
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+`;
+
 const ExpenseItemList = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,22 +74,26 @@ export default function ExpenseList({ expenses }) {
 
   return (
     <Section>
-      <ExpenseItemList>
-        {expenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            onClick={() => {
-              navigate(`/detail/${expense.id}`);
-            }}
-          >
-            <ExpenseDetails>
-              <span>{expense.date}</span>
-              <span>{`${expense.item} - ${expense.description}`}</span>
-            </ExpenseDetails>
-            <span>{expense.amount.toLocaleString()} 원</span>
-          </ExpenseItem>
-        ))}
-      </ExpenseItemList>
+      {expenses.length === 0 ? (
+        <NoExpenseMessage>지출이 없습니다.</NoExpenseMessage>
+      ) : (
+        <ExpenseItemList>
+          {expenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              onClick={() => {
+                navigate(`/detail/${expense.id}`);
+              }}
+            >
+              <ExpenseDetails>
+                <span>{expense.date}</span>
+                <span>{`${expense.item} - ${expense.description}`}</span>
+              </ExpenseDetails>
+              <span>{expense.amount.toLocaleString()} 원</span>
+            </ExpenseItem>
+          ))}
+        </ExpenseItemList>
+      )}
     </Section>
   );
 }
