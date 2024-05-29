@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import MonthNavigation from "../components/MonthNavigation";
 import ExpenseList from "../components/ExpenseList";
 import CreateExpense from "../components/CreateExpense";
+import { useSelector } from "react-redux";
 
 const Container = styled.main`
   max-width: 800px;
@@ -19,8 +20,9 @@ export const Section = styled.section`
   padding: 20px;
 `;
 
-export default function Home({ expenses, setExpenses }) {
+export default function Home() {
   const [month, setMonth] = useState(1);
+  const expenses = useSelector((state) => state.expenses);
 
   const filteredExpenses = expenses.filter(
     (expense) => expense.month === month
@@ -29,11 +31,7 @@ export default function Home({ expenses, setExpenses }) {
   return (
     <Container>
       <MonthNavigation month={month} setMonth={setMonth} />
-      <CreateExpense
-        month={month}
-        expenses={expenses}
-        setExpenses={setExpenses}
-      />
+      <CreateExpense month={month} />
       <ExpenseList expenses={filteredExpenses} />
     </Container>
   );

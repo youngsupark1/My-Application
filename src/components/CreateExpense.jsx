@@ -2,6 +2,8 @@ import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addExpense } from "../redux/slices/expensesSlice";
 
 const InputRow = styled.div`
   display: flex;
@@ -45,7 +47,8 @@ const AddButton = styled.button`
   }
 `;
 
-export default function CreateExpense({ month, expenses, setExpenses }) {
+export default function CreateExpense({ month }) {
+  const dispatch = useDispatch();
   const [newDate, setNewDate] = useState(
     `2024-${String(month).padStart(2, "0")}-01`
   );
@@ -75,7 +78,8 @@ export default function CreateExpense({ month, expenses, setExpenses }) {
       description: newDescription,
     };
 
-    setExpenses([...expenses, newExpense]);
+    dispatch(addExpense(newExpense));
+
     setNewDate(`2024-${String(month).padStart(2, "0")}-01`);
     setNewItem("");
     setNewAmount("");
