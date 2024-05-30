@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
 function App() {
