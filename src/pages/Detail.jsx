@@ -79,16 +79,17 @@ export default function Detail({ expenses, setExpenses }) {
       return;
     }
 
+    // 수정 버튼 구현
     const newExpenses = expenses.map((expense) => {
       if (expense.id !== id) {
         return expense;
       } else {
         return {
           ...expense,
-          date: date,
-          item: item,
-          amount: amount,
-          description: description,
+          date,
+          item,
+          amount,
+          description,
         };
       }
     });
@@ -96,6 +97,7 @@ export default function Detail({ expenses, setExpenses }) {
     navigate("/");
   };
 
+  // 삭제 버튼 구현
   const deleteExpense = () => {
     const newExpenses = expenses.filter((expense) => expense.id !== id);
     setExpenses(newExpenses);
