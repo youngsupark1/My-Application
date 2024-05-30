@@ -30,8 +30,8 @@ export default function Home() {
 
   return (
     <Container>
-      <MonthNavigation month={month} setMonth={setMonth} />
       <CreateExpense month={month} />
+      <MonthNavigation month={month} setMonth={setMonth} />
       <ExpenseList expenses={filteredExpenses} />
     </Container>
   );

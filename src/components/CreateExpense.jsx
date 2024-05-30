@@ -1,7 +1,7 @@
 import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import uuid from "react-uuid";
 import { useDispatch } from "react-redux";
 import { addExpense } from "../redux/slices/expensesSlice";
 
@@ -70,7 +70,7 @@ export default function CreateExpense({ month }) {
     }
 
     const newExpense = {
-      id: uuidv4(),
+      id: uuid(),
       month: parseInt(newDate.split("-")[1], 10),
       date: newDate,
       item: newItem,
